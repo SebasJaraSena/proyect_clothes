@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',           # Django REST Framework (necesario para construir APIs)
     'rest_framework.authtoken', # Habilita autenticación por token (login con token)
     'productos',                # Tu app que maneja los productos y categorías
@@ -45,6 +46,8 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -132,3 +135,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',          # Solo usuarios autenticados pueden usar la API por defecto
     ]
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8100",  # Ionic frontend
+]
