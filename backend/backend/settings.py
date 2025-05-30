@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',           # Django REST Framework (necesario para construir APIs)
     'rest_framework.authtoken', # Habilita autenticación por token (login con token)
     'productos',                # Tu app que maneja los productos y categorías
+    'usuarios',
 ]
 
 MIDDLEWARE = [

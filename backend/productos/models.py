@@ -18,3 +18,11 @@ class Producto(models.Model):
     def __str__(self):
         return self.nombre
 
+class CarritoItem(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField(default=1)
+    agregado_en = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.usuario.username} - {self.producto.nombre} ({self.cantidad})"
