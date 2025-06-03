@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <!-- <ion-searchbar placeholder="Buscar productos..." (ionInput)="buscar($event)"></ion-searchbar> -->
+  <ion-list>
+    <ion-card *ngFor="let p of productos">
+      <ion-card-header>
+        <ion-card-title>{{ p.nombre }}</ion-card-title>
+        <ion-card-subtitle>{{ p.precio | currency:'USD' }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{ p.descripcion }}
+      </ion-card-content>
+      <ion-button color="primary"(click)="comprar(p)">Comprar</ion-button>
+    </ion-card>
+  </ion-list>
+</ion-content>

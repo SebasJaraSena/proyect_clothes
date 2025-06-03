@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Carrito</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="carrito.length > 0; else vacio">
+    <ion-card *ngFor="let item of carrito">
+      <ion-card-header>
+        <ion-card-title>{{ item.producto_nombre }}</ion-card-title>
+        <ion-card-subtitle>Cantidad: {{ item.cantidad }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        Precio unitario: ${{ item.producto_precio }} <br>
+        Subtotal: ${{ item.producto_precio * item.cantidad }}
+        <ion-button color="danger" (click)="eliminarItem(item.id)" expand="block">
+          Quitar del carrito
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ng-template #vacio>
+    <ion-text color="medium">
+      <p class="ion-padding">Tu carrito está vacío total 🛒</p>
+    </ion-text>
+  </ng-template>
+
+  <ion-footer *ngIf="carrito.length > 0">
+    <ion-toolbar>
+      <ion-title>Total: ${{ total.toFixed(2) }}</ion-title>
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>

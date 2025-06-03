@@ -1,0 +1,15 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-input [(ngModel)]="usuario.username" placeholder="Nombre de usuario"></ion-input>
+  <ion-input [(ngModel)]="usuario.email" placeholder="Correo"></ion-input>
+  <ion-input [(ngModel)]="usuario.password" type="password" placeholder="Contraseña"></ion-input>
+  <ion-button expand="block" (click)="registrar()">Registrarse</ion-button>
+</ion-content>
