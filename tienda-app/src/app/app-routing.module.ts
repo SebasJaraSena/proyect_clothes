@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'carrito',
     loadChildren: () => import('./pages/carrito/carrito.module').then( m => m.CarritoPageModule)
   },
+  {
+    path: 'historial',
+    loadChildren: () => import('./pages/historial/historial.module').then( m => m.HistorialPageModule)
+  },
 ];
 
 @NgModule({

@@ -18,6 +18,7 @@ class Producto(models.Model):
     def __str__(self):
         return self.nombre
 
+#define las columnas que tiene que tener el carrito 
 class CarritoItem(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
@@ -26,3 +27,22 @@ class CarritoItem(models.Model):
 
     def __str__(self):
         return f"{self.usuario.username} - {self.producto.nombre} ({self.cantidad})"
+
+#Orden: una compra completa
+class Orden(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+    creada_en = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Orden #{self.id} - {self.usuario.username}"
+
+#OrdenItem: cada producto dentro de esa compra (como líneas de factura)
+class OrdenItem(models.Model):
+    orden = models.ForeignKey(Orden, related_name='items', on_delete=models.CASCADE)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField()
+    precio_unitario = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.producto.nombre} x{self.cantidad}"

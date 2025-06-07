@@ -66,4 +66,14 @@ export class ApiService {
     return this.http.put(this.url + 'carrito/' + id + '/', data, this.authHeaders());
   }
 
+  confirmarCompra() {
+    return this.http.post(this.url + 'ordenes/confirmar_compra/', {}, this.authHeaders());
+  }
+
+  getOrdenesAuth() {
+  return this.http.get(this.url + 'ordenes/', this.authHeaders());
+}
+
+
+
 }

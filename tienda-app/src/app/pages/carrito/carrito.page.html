@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>Carrito</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -23,7 +26,7 @@
 
   <ng-template #vacio>
     <ion-text color="medium">
-      <p class="ion-padding">Tu carrito está vacío total 🛒</p>
+      <p class="ion-padding">Tu carrito está vacío 🛒</p>
     </ion-text>
   </ng-template>
 
@@ -32,4 +35,12 @@
       <ion-title>Total: ${{ total.toFixed(2) }}</ion-title>
     </ion-toolbar>
   </ion-footer>
+
+  <ion-card *ngIf="carrito.length > 0">
+    <ion-card-content>
+      <ion-button expand="block" color="success" (click)="confirmarCompra()">
+        Confirmar compra
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
