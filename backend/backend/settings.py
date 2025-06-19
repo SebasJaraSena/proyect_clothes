@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -140,3 +141,7 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8100",  # Ionic frontend
 ]
+#MEDIA_URL: cómo acceder (URL).
+#MEDIA_ROOT: dónde guardarlo físicamente en tu proyecto.
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

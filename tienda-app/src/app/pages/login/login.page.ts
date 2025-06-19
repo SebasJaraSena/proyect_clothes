@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 interface LoginResponse {
   token: string;
+  user_id: number;
 }
 
 @Component({
@@ -24,6 +25,7 @@ export class LoginPage {
         console.log('TOKEN:', res.token);
 
         await this.api.storage.set('token', res.token);
+         await this.api.storage.set('user_id', res.user_id);
         this.router.navigate(['/productos']);
       },
       err => {

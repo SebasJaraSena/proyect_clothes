@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage-angular';
+import { Observable } from 'rxjs';
 
 export interface LoginResponse {
   token: string;
+  user_id: number;
 }
 
 @Injectable({
@@ -50,6 +52,19 @@ export class ApiService {
     return this.http.get(this.url + 'productos/', { headers }).toPromise(); // ← importante usar .toPromise() para await
   }
 
+  subirProducto(formData: FormData): Observable<any> {
+    return this.http.post('http://127.0.0.1:8000/api/productos/', formData);
+  }
+
+  async crearProducto(data: FormData) {
+    const token = await this.storage.get('token');  // ← aquí sí lo tienes seguro
+    const headers = new HttpHeaders({
+      Authorization: 'Token ' + token
+    });
+
+    return this.http.post(this.url + 'productos/', data, { headers }).toPromise();
+  }
+
   getCarrito() {
     return this.http.get(this.url + 'carrito/', this.authHeaders());
   }
@@ -71,8 +86,8 @@ export class ApiService {
   }
 
   getOrdenesAuth() {
-  return this.http.get(this.url + 'ordenes/', this.authHeaders());
-}
+    return this.http.get(this.url + 'ordenes/', this.authHeaders());
+  }
 
 
 

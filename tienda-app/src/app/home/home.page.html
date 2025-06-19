@@ -1,10 +1,24 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title >Tienda Deportiva</ion-title>
-    <ion-button color="primary" id="popover-button">Open Menu</ion-button>
-  </ion-toolbar>
 
+    <ion-buttons slot="start">
+      <ion-button routerLink="/login">
+        <ion-icon slot="icon-only" name="person-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Tienda Deportiva</ion-title>
+    <ion-buttons slot="end">
+      <!--     <ion-button routerLink="/login">
+        <ion-icon slot="icon-only" name="person-outline"></ion-icon>
+      </ion-button> -->
+      <ion-button routerLink="/registro">
+        <ion-icon slot="icon-only" name="person-add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
+
+
 <ion-popover trigger="popover-button" [dismissOnSelect]="true">
   <ng-template>
     <ion-content>

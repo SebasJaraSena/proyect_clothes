@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
-
+//import {IonButtons, IonContent, IonHeader, IonMenu, IonMenuButton, IonTitle, IonToolbar} from '@ionic/angular/standalone';
 @Component({
   selector: 'app-productos',
   templateUrl: './productos.page.html',

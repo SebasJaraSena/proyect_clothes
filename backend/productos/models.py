@@ -14,6 +14,7 @@ class Producto(models.Model):
     stock = models.IntegerField()
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     creado_por = models.ForeignKey(User, on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to='productos/', null=True, blank=True)
 
     def __str__(self):
         return self.nombre

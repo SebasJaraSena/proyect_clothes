@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Agregar Producto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (submit)="crearProducto()">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input [(ngModel)]="producto.nombre" name="nombre"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea [(ngModel)]="producto.descripcion" name="descripcion"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Precio</ion-label>
+      <ion-input type="number" [(ngModel)]="producto.precio" name="precio"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">stock</ion-label>
+      <ion-input type="number" [(ngModel)]="producto.stock" name="stock"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-select aria-label="Favorite Fruit" value="apple">
+        <ion-select-option value="1">Camisetas</ion-select-option>
+        <ion-select-option value="2">Zapatillas</ion-select-option>
+        <ion-select-option value="3">Pantalones</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Imagen</ion-label>
+      <input type="file" (change)="onFileSelected($event)" />
+    </ion-item>
+    
+    <br>
+
+    <ion-button expand="full" type="submit">Crear Producto</ion-button>
+  </form>
+</ion-content>

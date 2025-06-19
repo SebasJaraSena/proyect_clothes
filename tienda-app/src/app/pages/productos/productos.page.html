@@ -1,28 +1,55 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>productos</ion-title>
-    <ion-item routerLink="/historial">
-  <ion-icon slot="start" name="clipboard-outline"></ion-icon>
-  <ion-label>Historial</ion-label>
-</ion-item>
-  </ion-toolbar>
-</ion-header>
+<ion-menu contentId="main-content" side="start">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menú</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item routerLink="/">Inicio</ion-item>      
+      <ion-item routerLink="/carrito">Carrito</ion-item>
+      <ion-item routerLink="/historial">Historial</ion-item>
+      <ion-item routerLink="/nuevo-producto">Agregar productos</ion-item>
+      <ion-item routerLink="/historial">Vender</ion-item>
+      <ion-item routerLink="/historial">Cerrar sesion</ion-item>
 
+    </ion-list>
+  </ion-content>
+</ion-menu>
 
+<div id="main-content">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <!-- Botón hamburguesa -->
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  <!-- <ion-searchbar placeholder="Buscar productos..." (ionInput)="buscar($event)"></ion-searchbar> -->
-  <ion-list>
-    <ion-card *ngFor="let p of productos">
-      <ion-card-header>
-        <ion-card-title>{{ p.nombre }}</ion-card-title>
-        <ion-card-subtitle>{{ p.precio | currency:'USD' }}</ion-card-subtitle>
-      </ion-card-header>
+      <ion-title class="ion-text-center">Productos</ion-title>
 
-      <ion-card-content>
-        {{ p.descripcion }}
-      </ion-card-content>
-      <ion-button color="primary"(click)="comprar(p)">Comprar</ion-button>
-    </ion-card>
-  </ion-list>
-</ion-content>
+      <ion-buttons slot="end">
+        <ion-button routerLink="/historial">
+          <ion-icon slot="icon-only" name="clipboard-outline"></ion-icon>
+        </ion-button>
+        <ion-button routerLink="/carrito">
+          <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true" class="ion-padding">
+    <ion-list>
+      <ion-card *ngFor="let p of productos">
+        <ion-card-header>
+          <ion-card-title>{{ p.nombre }}</ion-card-title>
+          <ion-card-subtitle>{{ p.precio | currency:'USD' }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          {{ p.descripcion }}
+        </ion-card-content>
+        <ion-button color="primary" (click)="comprar(p)">Comprar</ion-button>
+      </ion-card>
+    </ion-list>
+  </ion-content>
+</div>

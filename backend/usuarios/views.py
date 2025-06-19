@@ -35,7 +35,14 @@ class LoginView(APIView):
         user = authenticate(username=username, password=password)
 
         if user:
-            token, created = Token.objects.get_or_create(user=user)
-            return Response({ "token": token.key })
+            token, created = Token.objects.get_or_create(user=user)            
+            return Response({ 
+                "token": token.key,
+                "user_id": user.id,
+            })
         else:
-            return Response({ "error": "Credenciales inválidas" }, status=status.HTTP_401_UNAUTHORIZED)
+            return Response(
+                {"error": "Credenciales inválidas"},
+                status=status.HTTP_401_UNAUTHORIZED
+            )
+

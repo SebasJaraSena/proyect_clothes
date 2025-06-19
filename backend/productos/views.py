@@ -2,7 +2,10 @@ from rest_framework import viewsets, permissions, status # 👈 importante impor
 from .models import Categoria, Producto, CarritoItem,  Orden, OrdenItem, CarritoItem
 from .serializers import CategoriaSerializer, ProductoSerializer, CarritoItemSerializer, OrdenSerializer
 from rest_framework.response import Response
+from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAdminUser
+
 
 # Lógica del CRUD
 class CategoriaViewSet(viewsets.ModelViewSet):
@@ -12,6 +15,8 @@ class CategoriaViewSet(viewsets.ModelViewSet):
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
+    parser_classes = [MultiPartParser, FormParser]  # Soporte para subir imágenes
+    permission_classes = [IsAdminUser]  # Solo admin puede crear productos
 
     def get_permissions(self):
         # Permitir ver productos sin estar autenticado (listado y detalle)
