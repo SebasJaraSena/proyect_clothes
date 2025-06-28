@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { ApiService } from 'src/app/services/api.service';
 import { HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nuevo-producto',
@@ -21,14 +22,14 @@ export class NuevoProductoPage {
   imagen: File | null = null;
   user_id: number = 0;
 
-  constructor(private api: ApiService, private storage: Storage) {
+  constructor(private api: ApiService, private storage: Storage, private router: Router) {
     this.cargarUserId();
     this.storage['create']().then(() => {
-    console.log('Storage listo ✅');
-  });
+      console.log('Storage listo ✅');
+    });
   }
 
- async cargarUserId() {
+  async cargarUserId() {
     await this.storage['create']();
     this.user_id = await this.storage['get']('user_id');
 
@@ -45,6 +46,7 @@ export class NuevoProductoPage {
     formData.append('precio', this.producto.precio);
     formData.append('stock', this.producto.stock);
     formData.append('categoria', this.producto.categoria);
+    formData.append('creado_por', this.user_id.toString());
 
     if (this.imagen) {
       formData.append('imagen', this.imagen);
@@ -52,9 +54,27 @@ export class NuevoProductoPage {
 
     try {
       const res = await this.api.crearProducto(formData);
+      this.router.navigate(['/productos']);
       console.log('Producto creado:', res);
+
+      this.producto = {
+        nombre: '',
+        descripcion: '',
+        precio: '',
+        stock: '',
+        categoria: ''
+      };
+
+      this.imagen = null;
+
+      // Si quieres también reiniciar el input de imagen visualmente:
+      const inputFile: any = document.querySelector('input[type="file"]');
+      if (inputFile) {
+        inputFile.value = '';
+      }
+
     } catch (err) {
       console.error('Error al crear producto:', err);
     }
-  } 
+  }
 }

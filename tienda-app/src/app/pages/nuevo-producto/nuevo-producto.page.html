@@ -22,12 +22,12 @@
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">stock</ion-label>
+      <ion-label position="floating">Cantidad disponible</ion-label>
       <ion-input type="number" [(ngModel)]="producto.stock" name="stock"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-select aria-label="Favorite Fruit" value="apple">
+      <ion-select [(ngModel)]="producto.categoria" name="categoria" interface="popover">
         <ion-select-option value="1">Camisetas</ion-select-option>
         <ion-select-option value="2">Zapatillas</ion-select-option>
         <ion-select-option value="3">Pantalones</ion-select-option>
@@ -38,7 +38,7 @@
       <ion-label position="stacked">Imagen</ion-label>
       <input type="file" (change)="onFileSelected($event)" />
     </ion-item>
-    
+
     <br>
 
     <ion-button expand="full" type="submit">Crear Producto</ion-button>
