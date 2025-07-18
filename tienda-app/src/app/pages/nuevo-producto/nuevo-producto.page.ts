@@ -3,6 +3,7 @@ import { Storage } from '@ionic/storage-angular';
 import { ApiService } from 'src/app/services/api.service';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-nuevo-producto',
@@ -22,7 +23,7 @@ export class NuevoProductoPage {
   imagen: File | null = null;
   user_id: number = 0;
 
-  constructor(private api: ApiService, private storage: Storage, private router: Router) {
+  constructor(private api: ApiService, private storage: Storage, private router: Router, private toastController: ToastController) {
     this.cargarUserId();
     this.storage['create']().then(() => {
       console.log('Storage listo ✅');
@@ -56,6 +57,7 @@ export class NuevoProductoPage {
       const res = await this.api.crearProducto(formData);
       this.router.navigate(['/productos']);
       console.log('Producto creado:', res);
+      await this.mostrarToast('Producto creado con éxito');
 
       this.producto = {
         nombre: '',
@@ -77,4 +79,14 @@ export class NuevoProductoPage {
       console.error('Error al crear producto:', err);
     }
   }
+  async mostrarToast(mensaje: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000,
+      color: 'success',
+      position: 'bottom'
+    });
+    toast.present();
+  }
+
 }

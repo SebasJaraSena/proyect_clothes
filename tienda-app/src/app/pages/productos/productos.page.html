@@ -6,11 +6,15 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <ion-item routerLink="/">productos</ion-item>      
       <ion-item routerLink="/carrito">Carrito</ion-item>
       <ion-item routerLink="/historial">Historial</ion-item>
       <ion-item routerLink="/nuevo-producto">Agregar productos</ion-item>
-      <ion-item routerLink="/">Cerrar sesion</ion-item>
+      <ion-item (click)="logout()" >Cerrar sesion</ion-item>
+
+    <!--   <ion-button (click)="logout()" expand="block" color="danger">
+  Cerrar sesión
+</ion-button> -->
+
 
     </ion-list>
   </ion-content>
